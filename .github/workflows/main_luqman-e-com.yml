@@ -26,15 +26,8 @@ jobs:
           npm install
           npm run build --if-present
 
-      - name: Prepare artifact for deployment
-        run: |
-          mkdir -p release
-          cp -r app.js package*.json release/
-          cp -r src/ release/src
-          cp -r public/ release/public
-
       - name: Zip artifact for deployment
-        run: zip -r release.zip release/
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
