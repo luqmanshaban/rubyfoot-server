@@ -66,4 +66,3 @@ jobs:
         with:
           app-name: 'luqman-e-com'
           slot-name: 'Production'
-          package: release/
