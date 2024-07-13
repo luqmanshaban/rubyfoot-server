@@ -1,15 +1,14 @@
 import express from 'express'
 import { connectToDB } from "./config/db.js";
 import cors from 'cors'
-import userRouter from './routes/AuthRoute.js';
-import orderRoute from './routes/OrderRoute.js';
+import router from './routes/index.js';
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
-app.use('/api', userRouter)
-app.use('/api', orderRoute)
+
+app.use(router)
 
 connectToDB()
 

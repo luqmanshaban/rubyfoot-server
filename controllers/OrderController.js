@@ -2,14 +2,16 @@ import Order from "../models/Order.js"
 
 export const createOrder = async(req, res) => {
     const newOrder = req.body.orders
+    if(!newOrder) {
+        res.status(400).json({ error: "Order not provided"})
+    }
     try {
         const order = await Order.create(newOrder)
         
-        if(!order) {
-            res.status(400).json({error: "FAILED TO CREATE ORDER"})
-        }else {
-            res.status(201).json({success: "ORDER CREATED SUCCESSFULLY"})
+        if(order) {
+            res.status(400).json({error: "ORDER EXIST"})
         }
+        res.status(201).json({success: "ORDER CREATED SUCCESSFULLY"})
         
     } catch (error) {
         res.status(500).json({error: error.message})
